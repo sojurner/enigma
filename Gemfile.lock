@@ -54,7 +54,7 @@ PLATFORMS
 
 DEPENDENCIES
   cane
-  minitest
+  minitest (~> 5.10, != 5.10.2)
   pry
   rake
   reek

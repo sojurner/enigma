@@ -15,14 +15,14 @@ class Enigma
     @date = nil
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = nil, date = nil)
     @message = Message.new(message)
     !date ? @date = DateShift.new : @date = DateShift.new(date)
     !key ? @key = Key.new : @key = Key.new(key)
     direct_message('encrypt')
   end
 
-  def decrypt(cipher_message, key, date)
+  def decrypt(cipher_message, key = nil, date = nil)
     @message = Message.new(cipher_message)
     !date ? @date = DateShift.new : @date = DateShift.new(date)
     !key ? @key = Key.new : @key = Key.new(key)
@@ -32,18 +32,13 @@ class Enigma
   def direct_message command
     shift = @date.date_offset
     keys = key.generate_encrypted_keys(shift)
-    
-    command =='encrypt' ?
+    code = @message.encrypt_decrypt_characters(keys, command)
     {
-      encryption: @message.encrypt_decrypt_characters(keys, command),
+      decryption: (code if command == "decrypt"),
+      encryption: (code if command == "encrypt"),
       key: @key.key,
       date: @date.date
-    } :
-    {
-      decryption: @message.encrypt_decrypt_characters(keys, command),
-      key: @key.key,
-      date: @date.date
-    }
+    }.compact
 
   end
 
