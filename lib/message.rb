@@ -14,10 +14,10 @@ class Message
   def encrypt_decrypt_characters(key, command)
     message = @grouped_message.map { |arr|
       arr.map.each_with_index {|char, index|
-        initial_index = alphabet.index(char)
+        initial_index = alphabet.index(char.downcase)
         command == "encrypt" ? 
-        shifted_alphabet = alphabet.rotate(key[index]) : 
-        shifted_alphabet = alphabet.rotate(key[index] * -1) 
+        shifted_alphabet = alphabet.rotate(key[index].to_i) : 
+        shifted_alphabet = alphabet.rotate(key[index].to_i * -1) 
         char = shifted_alphabet[initial_index]
       }.join('')
     }.join('')
