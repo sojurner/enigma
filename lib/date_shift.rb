@@ -11,6 +11,6 @@ class DateShift
 
   def date_offset
     squared = @date.to_i ** 2
-    squared.to_s.split(//).last(4)
+    squared.to_s.chars.last(4)
   end
 end
