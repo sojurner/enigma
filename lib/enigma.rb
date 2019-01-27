@@ -33,13 +33,14 @@ class Enigma
     shift = @date.date_offset
     keys = key.generate_encrypted_keys(shift)
     code = @message.encrypt_decrypt_characters(keys, command)
-    {
+    code_hash = {
       decryption: (code if command == "decrypt"),
       encryption: (code if command == "encrypt"),
       key: @key.key,
       date: @date.date
-    }.compact
-
+    }
+    code_hash.delete_if { |key, value| value.to_s.strip == '' }
+    code_hash
   end
 
 
