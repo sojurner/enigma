@@ -1,9 +1,9 @@
-require_relative 'key'
-require_relative 'date_shift'
-require_relative 'message'
-require 'pry'
+require './lib/key'
+require './lib/date_shift'
+require './lib/message'
 
 class Enigma
+  include AlphaNumericDate
 
   attr_reader :message, 
               :key, 
