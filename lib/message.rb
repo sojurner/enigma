@@ -7,8 +7,13 @@ class Message
   attr_reader :message
 
   def initialize(message)
-    @grouped_message = []
-    @message = message.split(//).each_slice(4) {|arr| @grouped_message << arr}
+    @message = message
+  end
+
+  def grouped_message
+    string_arr = []
+    @message.chars.each_slice(4) {|group_array| string_arr << group_array}
+    string_arr
   end
 
   def encrypt_decrypt_characters(key, command)
