@@ -29,11 +29,17 @@ class MessageTest < Minitest::Test
     assert_equal expected, result
   end
 
-  def test_it_can_encrypt_characters
+  def test_it_can_decrypt_characters
     @message = Message.new('keder ohulw')
     result = @message.encrypt_decrypt_characters([3, 27, 73, 20], 'decrypt')
     expected = 'hello world'
-
     assert_equal expected, result
+  end
+
+  def test_it_can_rotate_alphabet_based_on_encrypt_or_decrypt
+    key, index, command = [3, 27,73,20], 0, 'encrypt'
+    actual = @message.control_cipher(key, index, command)
+    expected = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c"]
+    assert_equal expected, actual
   end
 end
