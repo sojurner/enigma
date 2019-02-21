@@ -27,9 +27,9 @@ class Key
     keys.reject {|e| e.to_s.empty?}
   end
 
-    keys.map.with_index {|key, index|
+  def join_keys(key_set, shift)
+    key_set.map.with_index do |key, index|
       key.to_i + shift[index].to_i
-    }
+    end
   end
-
 end
