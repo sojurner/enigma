@@ -10,6 +10,10 @@ class MessageTest < Minitest::Test
     assert_instance_of Message, @message
   end
 
+  def test_it_starts_with_a_message
+    assert_equal "hello world", @message.message
+  end
+
   def test_can_encrpyt_characters
     result = @message.encrypt_decrypt_characters([3, 27, 73, 20], 'encrypt')
     expected = 'keder ohulw'

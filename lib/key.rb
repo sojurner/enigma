@@ -8,7 +8,7 @@ class Key
   def initialize(key = random_five_digit_key)
     @key = key
   end
-
+  
   def generate_encrypted_keys(shift)
     individual_key = @key.split(//) 
     keys = individual_key.map.with_index { |char, index| 
