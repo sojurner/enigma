@@ -26,5 +26,11 @@ class Message
     end.join('')
   end
 
-
+  def control_cipher(key, index, command) 
+    if command == "encrypt"
+      alphabet.rotate(key[index].to_i)
+    else
+      alphabet.rotate(key[index].to_i * -1) 
+    end
+  end
 end
