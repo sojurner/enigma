@@ -19,5 +19,7 @@ class DateShift
     int.to_s
   end
 
+  def last_four(string_date)
+    string_date.chars.last(4)
   end
 end
