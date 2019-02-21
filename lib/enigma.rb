@@ -38,8 +38,15 @@ class Enigma
     @message.encrypt_decrypt_characters(x, 'encrypt')
   end
 
+  def last_four_keys(shift, message)
+    require 'pry'; binding.pry
+    last_four = message[message.length - 4..-1].chars
+    last_four.map {|letter| alphabet.index(letter)}
+  end
+
+  def direct_message(command)
     shift = @date.date_offset
-    keys = key.generate_encrypted_keys(shift)
+    keys = @key.generate_encrypted_keys(shift)
     code = @message.encrypt_decrypt_characters(keys, command)
     code_hash = {
       decryption: (code if command == "decrypt"),
