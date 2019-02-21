@@ -29,7 +29,15 @@ class Enigma
     direct_message('decrypt')
   end
 
-  def direct_message command
+  def crack(cipher_msg, key = nil, date)
+    @message = Message.new(cipher_msg)
+    !date ? @date = DateShift.new : @date = DateShift.new(date)
+    shift = @date.date_offset.map {|letter| letter.to_i}
+    alphabet_index
+    require 'pry'; binding.pry
+    @message.encrypt_decrypt_characters(x, 'encrypt')
+  end
+
     shift = @date.date_offset
     keys = key.generate_encrypted_keys(shift)
     code = @message.encrypt_decrypt_characters(keys, command)
