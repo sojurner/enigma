@@ -15,5 +15,9 @@ class DateShift
     last_four(string_date)
   end
 
+  def int_to_string(int)
+    int.to_s
+  end
+
   end
 end
