@@ -7,22 +7,30 @@ class Message
   attr_reader :message
 
   def initialize(message)
-    @grouped_message = []
-    @message = message.split(//).each_slice(4) {|arr| @grouped_message << arr}
+    @message = message
+  end
+
+  def grouped_message
+    string_arr = []
+    @message.chars.each_slice(4) {|group_array| string_arr << group_array}
+    string_arr
   end
 
   def encrypt_decrypt_characters(key, command)
-    message = @grouped_message.map { |arr|
-      arr.map.each_with_index {|char, index|
+    grouped_message.map do |string_arr|
+      string_arr.map.each_with_index do |char, index|
         initial_index = alphabet.index(char.downcase)
-        command == "encrypt" ? 
-        shifted_alphabet = alphabet.rotate(key[index].to_i) : 
-        shifted_alphabet = alphabet.rotate(key[index].to_i * -1) 
+        shifted_alphabet = control_cipher(key, index, command)
         char = shifted_alphabet[initial_index]
-      }.join('')
-    }.join('')
-    message
+      end.flatten
+    end.join('')
   end
 
-
+  def control_cipher(key, index, command) 
+    if command == "encrypt"
+      alphabet.rotate(key[index].to_i)
+    else
+      alphabet.rotate(key[index].to_i * -1) 
+    end
+  end
 end
