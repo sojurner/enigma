@@ -48,13 +48,19 @@ class Enigma
     shift = @date.date_offset
     keys = @key.generate_encrypted_keys(shift)
     code = @message.encrypt_decrypt_characters(keys, command)
+    create_encryption(command, code)
+  end
+
+  def create_encryption(command, code)
     code_hash = {
       decryption: (code if command == "decrypt"),
       encryption: (code if command == "encrypt"),
       key: @key.key,
       date: @date.date
     }
-    code_hash.delete_if { |key, value| value.to_s.strip == '' }
+    refine_hash(code_hash)
+  end
+
     code_hash
   end
 
