@@ -61,8 +61,18 @@ class Enigma
     refine_hash(code_hash)
   end
 
+  def refine_hash(code_hash)
+    code_hash.delete_if { |key, value| !value }
     code_hash
   end
 
+  def known_indices
+    known_chars = " end".chars
+    known_chars.map {|letter| alphabet.index(letter)}
+  end
+
+  def decrypt_date(key, offset)
+    known_indices.map.with_index {|num, index| num - }
+  end
 
 end
