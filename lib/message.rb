@@ -1,9 +1,7 @@
 require_relative 'alphabet_key'
-require 'pry'
 
 class Message
   include AlphabetKey
-
   attr_reader :message
 
   def initialize(message)

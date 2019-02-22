@@ -1,7 +1,6 @@
 require './lib/message'
 
 class MessageTest < Minitest::Test
-
   def setup
     @message = Message.new('hello world')
   end

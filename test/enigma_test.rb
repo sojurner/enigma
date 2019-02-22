@@ -3,7 +3,6 @@ require './lib/enigma'
 require './lib/random_generation'
 require './lib/alphabet_key'
 
-
 class EnigmaTest < Minitest::Test
   include AlphabetKey
   include RandomGeneration
