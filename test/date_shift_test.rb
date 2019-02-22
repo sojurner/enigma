@@ -11,6 +11,16 @@ class DateShiftTest < Minitest::Test
     assert_instance_of DateShift, @date_shift
   end
 
+  def test_it_can_create_an_instance_of_date_with_a_date
+    date = DateShift.create_date("210219")
+    assert_instance_of DateShift, date
+  end
+
+  def test_it_can_create_a_date_without_given_a_date
+    date = DateShift.create_date(nil)
+    assert_instance_of DateShift, date
+  end
+
   def test_it_creates_proper_offsets
     actual = @date_shift.date_offset
     expected = ["1", "0", "2", "5"]

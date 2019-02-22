@@ -9,6 +9,10 @@ class DateShift
     @date = date
   end
 
+  def self.create_date(date)
+    !date ? DateShift.new : DateShift.new(date)
+  end
+
   def date_offset
     date_squared = @date.to_i ** 2
     string_date = int_to_string(date_squared)
