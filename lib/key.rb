@@ -8,6 +8,10 @@ class Key
   def initialize(key = generate_key)
     @key = key
   end
+
+  def self.create_key(key)
+    !key ? Key.new : Key.new(key)
+  end
   
   def generate_encrypted_keys(shift)
     key_set = @key.chars 
