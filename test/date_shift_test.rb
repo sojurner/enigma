@@ -12,9 +12,18 @@ class DateShiftTest < Minitest::Test
   end
 
   def test_it_creates_proper_offsets
-    result = @date_shift.date_offset
+    actual = @date_shift.date_offset
     expected = ["1", "0", "2", "5"]
+    assert_equal expected, actual
+  end
 
-    assert_equal expected, result
+  def test_it_converts_int_to_string
+    actual = @date_shift.int_to_string(4)
+    assert_equal "4", actual
+  end
+
+  def test_it_extracts_last_four_digits
+    actual = @date_shift.last_four("3321345")
+    assert_equal ["1", "3", "4", "5"], actual
   end
 end

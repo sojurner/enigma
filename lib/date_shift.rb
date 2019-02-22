@@ -1,7 +1,7 @@
-require_relative 'alpha_numeric_date'
+require_relative 'random_generation'
 
 class DateShift
-  include AlphaNumericDate
+  include RandomGeneration
 
   attr_reader :date
 
