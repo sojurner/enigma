@@ -36,10 +36,20 @@ class MessageTest < Minitest::Test
     assert_equal expected, result
   end
 
+  def test_it_can_shift_letters
+    actual = @message.shift_letter("h", 9, "encrypt")
+    assert_equal "q", actual
+  end
+
   def test_it_can_rotate_alphabet_based_on_encrypt_or_decrypt
-    key, index, command = [3, 27,73,20], 0, 'encrypt'
-    actual = @message.control_cipher(key, index, command)
+    shift, command = 3, 'encrypt'
+    actual = @message.control_cipher(shift, command)
     expected = ["d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c"]
+    assert_equal expected, actual
+
+    shift, command = 3, 'decrypt'
+    actual = @message.control_cipher(shift, command)
+    expected = ["y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x"]
     assert_equal expected, actual
   end
 end
