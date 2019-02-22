@@ -10,6 +10,16 @@ class KeyTest < Minitest::Test
     assert_instance_of Key, @key
   end
 
+  def test_it_can_create_an_instance_of_key_with_a_key
+    key = Key.create_key("02715")
+    assert_instance_of Key, key
+  end
+
+  def test_it_can_create_a_new_key_without_give_a_key
+    key = Key.create_key(nil)
+    assert_instance_of Key, key
+  end 
+
   def test_it_generates_encrypted_keys
     expected = [3, 27, 73, 20]
     actual = @key.generate_encrypted_keys(["1", "0", "2", "5"])
