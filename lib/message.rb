@@ -10,6 +10,10 @@ class Message
     @message = message
   end
 
+  def self.create_message(message)
+    Message.new(message)
+  end
+
   def grouped_message
     string_arr = []
     @message.chars.each_slice(4) {|group_array| string_arr << group_array}

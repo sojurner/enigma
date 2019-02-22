@@ -23,6 +23,11 @@ class MessageTest < Minitest::Test
     assert_equal expected, @message.grouped_message
   end
 
+  def test_it_can_create_an_instance_of_message
+    message = Message.create_message("ooolala")
+    assert_instance_of Message, message
+  end
+
   def test_can_encrpyt_characters
     result = @message.encrypt_decrypt_characters([3, 27, 73, 20], 'encrypt')
     expected = 'keder ohulw'
