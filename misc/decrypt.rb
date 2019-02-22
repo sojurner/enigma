@@ -5,12 +5,12 @@ require 'csv'
 file_reader = File.open(ARGV[0], 'r')
 message = file_reader.read.split(",")
 enigma = Enigma.new
-encrypted = enigma.encrypt(message[0], message[1], message[2])
+decrypt = enigma.decrypt(message[0], message[1], message[2])
 
 file_writer = File.open(ARGV[1], 'w')
-file_writer.write(encrypted)
+file_writer.write(decrypt)
 
-puts "Created #{ARGV[1]} with the key #{encrypted[:key]} and date #{encrypted[:date]}"
+puts "Created #{ARGV[1]} with the key #{decrypt[:key]} and date #{decrypt[:date]}"
 
 file_reader.close
 file_writer.close
