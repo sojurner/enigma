@@ -1,8 +1,8 @@
-require_relative 'alpha_numeric_date'
+require_relative 'alphabet_key'
 require 'pry'
 
 class Message
-  include AlphaNumericDate
+  include AlphabetKey
 
   attr_reader :message
 
@@ -19,18 +19,23 @@ class Message
   def encrypt_decrypt_characters(key, command)
     grouped_message.map do |string_arr|
       string_arr.map.each_with_index do |char, index|
-        initial_index = alphabet.index(char.downcase)
-        shifted_alphabet = control_cipher(key, index, command)
-        char = shifted_alphabet[initial_index]
+        shift_letter(char, key[index], command)
       end.flatten
     end.join('')
   end
 
-  def control_cipher(key, index, command) 
-    if command == "encrypt"
-      alphabet.rotate(key[index].to_i)
+  def shift_letter(letter, shift, command)
+    initial_index = alphabet.index(letter.downcase)
+    shifted_alphabet = control_cipher(shift, command)
+    shifted_alphabet[initial_index]
+  end
+
+  def control_cipher(shift, command) 
+    case(command)
+    when "encrypt"
+      alphabet.rotate(shift.to_i)
     else
-      alphabet.rotate(key[index].to_i * -1) 
+      alphabet.rotate(shift.to_i * -1) 
     end
   end
 end
