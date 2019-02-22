@@ -17,6 +17,6 @@ class ModuleTest < Minitest::Test
   end
 
   def test_date_today
-    assert_equal "210219", date_today
+    assert_equal 6, date_today.length
   end
 end
