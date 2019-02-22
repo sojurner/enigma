@@ -3,7 +3,6 @@ require './lib/enigma'
 require './lib/random_generation'
 require './lib/alphabet_key'
 
-
 class EnigmaTest < Minitest::Test
   include AlphabetKey
   include RandomGeneration
@@ -37,13 +36,12 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_messages_without_a_date_or_key
-    actual = @enigma.encrypt("hello world")
-    expected = {
-      :encryption=>"ilmgpgxjsse", 
-      :key=>"75221",
-      :date=>"210219"
-    }
-    assert_equal expected, actual
+    encryption = @enigma.encrypt("hello world")
+    assert encryption.key?(:key)
+    assert encryption.key?(:date)
+    assert encryption[:key]
+    assert encryption[:date]
+    assert encryption[:encryption]
   end
 
   def test_it_can_decrypt_messages

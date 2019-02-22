@@ -2,7 +2,6 @@ require_relative 'test_helper'
 require './lib/date_shift'
 
 class DateShiftTest < Minitest::Test
-
   def setup
     @date_shift = DateShift.new("040895")
   end

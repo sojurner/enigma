@@ -2,7 +2,6 @@ require_relative 'random_generation'
 
 class DateShift
   include RandomGeneration
-
   attr_reader :date
 
   def initialize(date = date_today) 

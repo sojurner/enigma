@@ -2,7 +2,6 @@ require_relative 'random_generation'
 
 class Key
   include RandomGeneration
-
   attr_reader :key
 
   def initialize(key = generate_key)
