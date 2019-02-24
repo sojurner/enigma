@@ -48,24 +48,4 @@ class Enigma
     code_hash.delete_if { |key, value| !value }
     code_hash
   end
-
-  # def last_four_keys(shift, message)
-  #   require 'pry'; binding.pry
-  #   last_four = message[message.length - 4..-1].chars
-  #   last_four.map {|letter| alphabet.index(letter)}
-  # end
-
-  # def crack(cipher_msg, key = nil, date)
-  #   @message = Message.new(cipher_msg)
-  #   !date ? @date = DateShift.new : @date = DateShift.new(date)
-  #   shift = @date.date_offset.map {|letter| letter.to_i}
-  #   alphabet_index
-  #   require 'pry'; binding.pry
-  #   @message.encrypt_decrypt_characters(x, 'encrypt')
-  # end
-
-  # def known_indices
-  #   known_chars = " end".chars
-  #   known_chars.map {|letter| alphabet.index(letter)}
-  # end
 end
