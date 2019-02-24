@@ -27,12 +27,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encrypt_messages_without_a_date
     actual = @enigma.encrypt("hello world", "02715")
-    expected = {
-      :encryption=>"qnhaxisd u ", 
-      :key=>"02715", 
-      :date=>"220219"
-    }
-    assert_equal expected, actual
+    has_date = actual.key?(:date)
+    assert_equal "qnhaxisd u ", actual[:encryption]
+    assert_equal "02715", actual[:key]
+    assert has_date
   end
 
   def test_it_can_encrypt_messages_without_a_date_or_key
@@ -56,12 +54,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt_messages_without_a_date
     actual = @enigma.decrypt("hello world", "02715")
-    expected = {
-      :decryption=>"zwpwfr zich",
-      :key=>"02715", 
-      :date=>"220219"
-    }
-    assert_equal expected, actual
+    has_date = actual.key?(:date)
+    assert_equal "zwpwfr zich", actual[:decryption]
+    assert_equal "02715", actual[:key]
+    assert has_date
   end
 
   def test_it_can_create_an_encryption
@@ -142,8 +138,9 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  # def test_it_can_crack_messages
+  # def test_it_can_crack_messages_with_a_date
   #   result = @enigma.crack("vjqtbeaweqihssi", "291018")
+
   #     expected = {
   #       decryption: "hello world end",
   #       date: "291018",
