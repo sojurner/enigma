@@ -22,6 +22,14 @@ class MessageTest < Minitest::Test
     assert_equal expected, @message.grouped_message
   end
 
+  def test_it_can_shift_grouped_values
+    str = ["o","o","l","a","l","a"]
+    shift = [5, 26, 37, 13]
+    actual = @message.shift_grouped_values(str, shift, "encrypt")
+    expected = ["t", "n", "v", "n", "l", "a"]
+    assert_equal expected, actual
+  end
+
   def test_it_can_create_an_instance_of_message
     message = Message.create_message("ooolala")
     assert_instance_of Message, message
