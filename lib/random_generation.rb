@@ -2,9 +2,8 @@ require 'date'
 
 module RandomGeneration
   def generate_key
-    random_five_digit = []
-    5.times{ random_five_digit << rand(0..9) }
-    random_five_digit.join
+    random_five_digit = Array.new(5, 0)
+    random_five_digit.map {|_| rand(0..9} }.join
   end
 
   def date_today
