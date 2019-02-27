@@ -3,7 +3,7 @@ require 'pry'
 require 'csv'
 
 file_reader = File.open(ARGV[0], 'r')
-message = file_reader.read.split(/,/)
+message = file_reader.read.split(/\n/)
 enigma = Enigma.new
 encrypted = enigma.encrypt(message[0], message[1], message[2])
 encrypt_msg = "#{encrypted[:encryption]},#{encrypted[:key]},#{encrypted[:date]}"
